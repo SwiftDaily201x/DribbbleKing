@@ -20,6 +20,12 @@
 		109E40B11D89976100CE1785 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 109E40B01D89976100CE1785 /* CoreTelephony.framework */; };
 		109E40B31D899B0000CE1785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 109E40B21D899B0000CE1785 /* Assets.xcassets */; };
 		109E40B51D899BDD00CE1785 /* aaa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 109E40B41D899BDD00CE1785 /* aaa.gif */; };
+		109E40C61D89C5C700CE1785 /* CRToastConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 109E40BB1D89C5C700CE1785 /* CRToastConfig.m */; };
+		109E40C71D89C5C700CE1785 /* CRToastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 109E40BE1D89C5C700CE1785 /* CRToastManager.m */; };
+		109E40C81D89C5C700CE1785 /* CRToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109E40C01D89C5C700CE1785 /* CRToastView.m */; };
+		109E40C91D89C5C700CE1785 /* CRToastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 109E40C21D89C5C700CE1785 /* CRToastViewController.m */; };
+		109E40CA1D89C5C700CE1785 /* CRToastWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 109E40C41D89C5C700CE1785 /* CRToastWindow.m */; };
+		109E40D01D89C76500CE1785 /* NotiHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 109E40CF1D89C76500CE1785 /* NotiHandle.m */; };
 		9A7A9DD606B3178E7BC8C16D /* libPods-DribbbleKing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17359E69A012D42F0B6D65CA /* libPods-DribbbleKing.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +70,20 @@
 		109E40B01D89976100CE1785 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		109E40B21D899B0000CE1785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		109E40B41D899BDD00CE1785 /* aaa.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = aaa.gif; path = ../../../Downloads/aaa.gif; sourceTree = "<group>"; };
+		109E40B91D89C5C700CE1785 /* CRToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRToast.h; sourceTree = "<group>"; };
+		109E40BA1D89C5C700CE1785 /* CRToastConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRToastConfig.h; sourceTree = "<group>"; };
+		109E40BB1D89C5C700CE1785 /* CRToastConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRToastConfig.m; sourceTree = "<group>"; };
+		109E40BC1D89C5C700CE1785 /* CRToastLayoutHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRToastLayoutHelpers.h; sourceTree = "<group>"; };
+		109E40BD1D89C5C700CE1785 /* CRToastManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRToastManager.h; sourceTree = "<group>"; };
+		109E40BE1D89C5C700CE1785 /* CRToastManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRToastManager.m; sourceTree = "<group>"; };
+		109E40BF1D89C5C700CE1785 /* CRToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRToastView.h; sourceTree = "<group>"; };
+		109E40C01D89C5C700CE1785 /* CRToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRToastView.m; sourceTree = "<group>"; };
+		109E40C11D89C5C700CE1785 /* CRToastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRToastViewController.h; sourceTree = "<group>"; };
+		109E40C21D89C5C700CE1785 /* CRToastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRToastViewController.m; sourceTree = "<group>"; };
+		109E40C31D89C5C700CE1785 /* CRToastWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRToastWindow.h; sourceTree = "<group>"; };
+		109E40C41D89C5C700CE1785 /* CRToastWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRToastWindow.m; sourceTree = "<group>"; };
+		109E40CE1D89C76500CE1785 /* NotiHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotiHandle.h; sourceTree = "<group>"; };
+		109E40CF1D89C76500CE1785 /* NotiHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotiHandle.m; sourceTree = "<group>"; };
 		17359E69A012D42F0B6D65CA /* libPods-DribbbleKing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DribbbleKing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF50E55317DBBA949CE69B5 /* Pods-DribbbleKing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DribbbleKing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DribbbleKing/Pods-DribbbleKing.debug.xcconfig"; sourceTree = "<group>"; };
 		EAB976B5456ED566D4CC23FF /* Pods-DribbbleKing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DribbbleKing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DribbbleKing/Pods-DribbbleKing.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,8 +135,11 @@
 		1035A5141D8950AD00998921 /* DribbbleKing */ = {
 			isa = PBXGroup;
 			children = (
-				109E40B41D899BDD00CE1785 /* aaa.gif */,
+				109E40B81D89C5C700CE1785 /* CRToast */,
 				109E409C1D8995A400CE1785 /* WeiboSDK */,
+				109E40CE1D89C76500CE1785 /* NotiHandle.h */,
+				109E40CF1D89C76500CE1785 /* NotiHandle.m */,
+				109E40B41D899BDD00CE1785 /* aaa.gif */,
 				1035A5181D8950AD00998921 /* AppDelegate.h */,
 				1035A5191D8950AD00998921 /* AppDelegate.m */,
 				1035A51B1D8950AD00998921 /* ViewController.h */,
@@ -165,6 +188,25 @@
 				109E40A91D8995C200CE1785 /* WeiboUser.h */,
 			);
 			path = WeiboSDK;
+			sourceTree = "<group>";
+		};
+		109E40B81D89C5C700CE1785 /* CRToast */ = {
+			isa = PBXGroup;
+			children = (
+				109E40B91D89C5C700CE1785 /* CRToast.h */,
+				109E40BA1D89C5C700CE1785 /* CRToastConfig.h */,
+				109E40BB1D89C5C700CE1785 /* CRToastConfig.m */,
+				109E40BC1D89C5C700CE1785 /* CRToastLayoutHelpers.h */,
+				109E40BD1D89C5C700CE1785 /* CRToastManager.h */,
+				109E40BE1D89C5C700CE1785 /* CRToastManager.m */,
+				109E40BF1D89C5C700CE1785 /* CRToastView.h */,
+				109E40C01D89C5C700CE1785 /* CRToastView.m */,
+				109E40C11D89C5C700CE1785 /* CRToastViewController.h */,
+				109E40C21D89C5C700CE1785 /* CRToastViewController.m */,
+				109E40C31D89C5C700CE1785 /* CRToastWindow.h */,
+				109E40C41D89C5C700CE1785 /* CRToastWindow.m */,
+			);
+			path = CRToast;
 			sourceTree = "<group>";
 		};
 		F5C53745FF3B36942C612AE3 /* Pods */ = {
@@ -344,9 +386,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				109E40C61D89C5C700CE1785 /* CRToastConfig.m in Sources */,
 				1035A51D1D8950AD00998921 /* ViewController.m in Sources */,
+				109E40CA1D89C5C700CE1785 /* CRToastWindow.m in Sources */,
 				1035A51A1D8950AD00998921 /* AppDelegate.m in Sources */,
+				109E40D01D89C76500CE1785 /* NotiHandle.m in Sources */,
 				1035A5171D8950AD00998921 /* main.m in Sources */,
+				109E40C91D89C5C700CE1785 /* CRToastViewController.m in Sources */,
+				109E40C71D89C5C700CE1785 /* CRToastManager.m in Sources */,
+				109E40C81D89C5C700CE1785 /* CRToastView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
