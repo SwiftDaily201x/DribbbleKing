@@ -39,7 +39,7 @@
     AppDelegate *myDelegate =(AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     WBImageObject *image = [WBImageObject object];
-    image.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"aaa" ofType:@"gif"]];
+    image.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://bbsimg.ali213.net/data/attachment/forum/201311/05/21224633iguo4a2a3l6uza.gif"]];
     
     [WBHttpRequest requestForShareAStatus:@"test" contatinsAPicture:image orPictureUrl:nil withAccessToken:myDelegate.wbtoken andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
         
