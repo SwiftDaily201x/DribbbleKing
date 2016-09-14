@@ -14,6 +14,7 @@
 		1035A5221D8950AD00998921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1035A5211D8950AD00998921 /* Assets.xcassets */; };
 		1035A5251D8950AD00998921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1035A5231D8950AD00998921 /* LaunchScreen.storyboard */; };
 		1035A5301D8950AD00998921 /* DribbbleKingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1035A52F1D8950AD00998921 /* DribbbleKingTests.m */; };
+		9A7A9DD606B3178E7BC8C16D /* libPods-DribbbleKing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17359E69A012D42F0B6D65CA /* libPods-DribbbleKing.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,9 @@
 		1035A52B1D8950AD00998921 /* DribbbleKingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DribbbleKingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1035A52F1D8950AD00998921 /* DribbbleKingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DribbbleKingTests.m; sourceTree = "<group>"; };
 		1035A5311D8950AD00998921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17359E69A012D42F0B6D65CA /* libPods-DribbbleKing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DribbbleKing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADF50E55317DBBA949CE69B5 /* Pods-DribbbleKing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DribbbleKing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DribbbleKing/Pods-DribbbleKing.debug.xcconfig"; sourceTree = "<group>"; };
+		EAB976B5456ED566D4CC23FF /* Pods-DribbbleKing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DribbbleKing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DribbbleKing/Pods-DribbbleKing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A7A9DD606B3178E7BC8C16D /* libPods-DribbbleKing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +71,8 @@
 				1035A5141D8950AD00998921 /* DribbbleKing */,
 				1035A52E1D8950AD00998921 /* DribbbleKingTests */,
 				1035A5131D8950AD00998921 /* Products */,
+				F5C53745FF3B36942C612AE3 /* Pods */,
+				FE09B29691BD2127335132F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +118,23 @@
 			path = DribbbleKingTests;
 			sourceTree = "<group>";
 		};
+		F5C53745FF3B36942C612AE3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADF50E55317DBBA949CE69B5 /* Pods-DribbbleKing.debug.xcconfig */,
+				EAB976B5456ED566D4CC23FF /* Pods-DribbbleKing.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FE09B29691BD2127335132F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17359E69A012D42F0B6D65CA /* libPods-DribbbleKing.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1035A5341D8950AD00998921 /* Build configuration list for PBXNativeTarget "DribbbleKing" */;
 			buildPhases = (
+				03B3ECD82ECE07E5E293C533 /* Check Pods Manifest.lock */,
 				1035A50E1D8950AD00998921 /* Sources */,
 				1035A50F1D8950AD00998921 /* Frameworks */,
 				1035A5101D8950AD00998921 /* Resources */,
+				4259DDA88CF946F7BA34EC1D /* Embed Pods Frameworks */,
+				20C18EAE0E95236885F536D8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,6 +236,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03B3ECD82ECE07E5E293C533 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		20C18EAE0E95236885F536D8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DribbbleKing/Pods-DribbbleKing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4259DDA88CF946F7BA34EC1D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DribbbleKing/Pods-DribbbleKing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1035A50E1D8950AD00998921 /* Sources */ = {
@@ -351,6 +426,7 @@
 		};
 		1035A5351D8950AD00998921 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADF50E55317DBBA949CE69B5 /* Pods-DribbbleKing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X3664LTV52;
@@ -363,6 +439,7 @@
 		};
 		1035A5361D8950AD00998921 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAB976B5456ED566D4CC23FF /* Pods-DribbbleKing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X3664LTV52;
@@ -418,6 +495,7 @@
 				1035A5361D8950AD00998921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1035A5371D8950AD00998921 /* Build configuration list for PBXNativeTarget "DribbbleKingTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +504,7 @@
 				1035A5391D8950AD00998921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
