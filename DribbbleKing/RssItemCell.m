@@ -41,6 +41,7 @@
         _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_WIDTH * 0.75 - 30, SCREEN_WIDTH, 30)];
         _mainTextLabel.textColor = [UIColor colorWithRed:155 / 255.0 green:89 / 255.0 blue:182 / 255.0 alpha:1];
         _mainTextLabel.font = [UIFont systemFontOfSize:17];
+        _mainTextLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.3];
     }
     return _mainTextLabel;
 }

@@ -47,7 +47,9 @@
              _itemArray = [NSMutableArray array];
              for (ONOXMLElement *ele in itemXmlArray) {
                  RssItem *item = [[RssItem alloc] initWithWithXMLElement:ele];
-                 [_itemArray addObject:item];
+                 if ([item.imageUrl rangeOfString:@".gif"].location != NSNotFound) {
+                     [_itemArray addObject:item];
+                 }
              }
              
              NSLog(@"这里打印请求成功要做的事");
