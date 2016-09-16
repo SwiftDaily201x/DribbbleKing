@@ -13,6 +13,8 @@
 		1035A5201D8950AD00998921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1035A51E1D8950AD00998921 /* Main.storyboard */; };
 		1035A5251D8950AD00998921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1035A5231D8950AD00998921 /* LaunchScreen.storyboard */; };
 		1035A5301D8950AD00998921 /* DribbbleKingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1035A52F1D8950AD00998921 /* DribbbleKingTests.m */; };
+		106CEC2B1D8BB206007A8BCE /* RssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 106CEC2A1D8BB206007A8BCE /* RssItem.m */; };
+		106CEC2E1D8BBC13007A8BCE /* RssItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 106CEC2D1D8BBC13007A8BCE /* RssItemCell.m */; };
 		109E40AA1D8995C200CE1785 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 109E409D1D8995C200CE1785 /* libWeiboSDK.a */; };
 		109E40AB1D8995C200CE1785 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 109E40A61D8995C200CE1785 /* WeiboSDK.bundle */; };
 		109E40AD1D8996F200CE1785 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 109E40AC1D8996F200CE1785 /* libsqlite3.0.tbd */; };
@@ -52,6 +54,11 @@
 		1035A52B1D8950AD00998921 /* DribbbleKingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DribbbleKingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1035A52F1D8950AD00998921 /* DribbbleKingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DribbbleKingTests.m; sourceTree = "<group>"; };
 		1035A5311D8950AD00998921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		106CEC291D8BB206007A8BCE /* RssItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssItem.h; sourceTree = "<group>"; };
+		106CEC2A1D8BB206007A8BCE /* RssItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssItem.m; sourceTree = "<group>"; };
+		106CEC2C1D8BBC13007A8BCE /* RssItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssItemCell.h; sourceTree = "<group>"; };
+		106CEC2D1D8BBC13007A8BCE /* RssItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssItemCell.m; sourceTree = "<group>"; };
+		106CEC2F1D8BBD22007A8BCE /* ConstDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstDef.h; sourceTree = "<group>"; };
 		109E409D1D8995C200CE1785 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		109E409E1D8995C200CE1785 /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
 		109E409F1D8995C200CE1785 /* WBHttpRequest+WeiboGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboGame.h"; sourceTree = "<group>"; };
@@ -144,6 +151,11 @@
 				1035A5191D8950AD00998921 /* AppDelegate.m */,
 				1035A51B1D8950AD00998921 /* ViewController.h */,
 				1035A51C1D8950AD00998921 /* ViewController.m */,
+				106CEC291D8BB206007A8BCE /* RssItem.h */,
+				106CEC2A1D8BB206007A8BCE /* RssItem.m */,
+				106CEC2C1D8BBC13007A8BCE /* RssItemCell.h */,
+				106CEC2D1D8BBC13007A8BCE /* RssItemCell.m */,
+				106CEC2F1D8BBD22007A8BCE /* ConstDef.h */,
 				1035A51E1D8950AD00998921 /* Main.storyboard */,
 				1035A5231D8950AD00998921 /* LaunchScreen.storyboard */,
 				1035A5261D8950AD00998921 /* Info.plist */,
@@ -391,8 +403,10 @@
 				109E40CA1D89C5C700CE1785 /* CRToastWindow.m in Sources */,
 				1035A51A1D8950AD00998921 /* AppDelegate.m in Sources */,
 				109E40D01D89C76500CE1785 /* NotiHandle.m in Sources */,
+				106CEC2B1D8BB206007A8BCE /* RssItem.m in Sources */,
 				1035A5171D8950AD00998921 /* main.m in Sources */,
 				109E40C91D89C5C700CE1785 /* CRToastViewController.m in Sources */,
+				106CEC2E1D8BBC13007A8BCE /* RssItemCell.m in Sources */,
 				109E40C71D89C5C700CE1785 /* CRToastManager.m in Sources */,
 				109E40C81D89C5C700CE1785 /* CRToastView.m in Sources */,
 			);

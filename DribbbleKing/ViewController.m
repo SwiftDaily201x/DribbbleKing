@@ -10,8 +10,17 @@
 #import "WeiboSDK.h"
 #import "AppDelegate.h"
 #import "NotiHandle.h"
+#import "AFNetworking.h"
+#import "ONOXMLDocument.h"
+#import "RssItem.h"
+#import "RssItemCell.h"
+#import "ConstDef.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) NSMutableArray *itemArray;
+@property (nonatomic, strong) NSMutableArray *selectedItemArray;
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -20,16 +29,60 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //界面相关
+    [self.view addSubview:self.tableView];
+    
+    //数据相关
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager setResponseSerializer:[AFHTTPResponseSerializer new]];
+    [manager GET:@"https://dribbble.com/shots/popular.rss" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    }
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             ONOXMLDocument *xmlDoc = [ONOXMLDocument XMLDocumentWithData:responseObject error:nil];
+             ONOXMLElement *rootElement = [xmlDoc rootElement];
+             ONOXMLElement *channelElement = [rootElement childrenWithTag:@"channel"][0];
+             NSArray *itemXmlArray = [channelElement childrenWithTag:@"item"];
+             _itemArray = [NSMutableArray array];
+             for (ONOXMLElement *ele in itemXmlArray) {
+                 RssItem *item = [[RssItem alloc] initWithWithXMLElement:ele];
+                 [_itemArray addObject:item];
+             }
+             
+             NSLog(@"这里打印请求成功要做的事");
+             [self.tableView reloadData];
+         }
+     
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+             
+             NSLog(@"%@",error);  //这里打印错误信息
+             
+         }];
+    
+    //授权相关
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"wbtoken"]) {
         [self getAuth];
     }
     
-    UIButton *biongBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+    UIButton *biongBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 60, 40, 40)];
     biongBtn.backgroundColor = [UIColor greenColor];
-    biongBtn.center = self.view.center;
+    biongBtn.layer.cornerRadius = 20;
     [biongBtn addTarget:self action:@selector(biong) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:biongBtn];
     
+}
+
+#pragma mark - UIElement {
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+        [_tableView registerClass:[RssItemCell class] forCellReuseIdentifier:NSStringFromClass([RssItemCell class])];
+    }
+    return _tableView;
 }
 
 - (void)getAuth {
@@ -65,10 +118,33 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - tableviewdatasource
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.view.bounds.size.width * 0.75;
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _itemArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RssItemCell *cell = (RssItemCell *)[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RssItemCell class])];
+    if (cell == nil)
+    {
+        cell = [[RssItemCell alloc] initWithStyle: UITableViewCellStyleValue1 reuseIdentifier: NSStringFromClass([RssItemCell class])];
+    }
+    [cell loadItem:_itemArray[indexPath.row]];
+    return cell;
+}
+
+
+#pragma mark - tableview delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 @end
