@@ -15,12 +15,16 @@
 #import "RssItem.h"
 #import "RssItemCell.h"
 #import "ConstDef.h"
+#import "SDImageCache.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *itemArray;
-@property (nonatomic, strong) NSMutableArray *selectedItemArray;
+@property (nonatomic, strong) RssItem *selectedItem;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UILabel *selectTitleLabel;
+@property (nonatomic, strong) UIButton *refreshBtn;
+@property (nonatomic, strong) UIButton *biongBtn;
 
 @end
 
@@ -31,15 +35,73 @@
     
     //界面相关
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.selectTitleLabel];
+    [self.view addSubview:self.refreshBtn];
+    [self.view addSubview:self.biongBtn];
     
     //数据相关
+    [self refreshItems];
     
+    //授权相关
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"wbtoken"]) {
+        [self getAuth];
+    }
+}
+
+#pragma mark - UIElement
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+        [_tableView registerClass:[RssItemCell class] forCellReuseIdentifier:NSStringFromClass([RssItemCell class])];
+    }
+    return _tableView;
+}
+
+- (UILabel *)selectTitleLabel {
+    if (!_selectTitleLabel) {
+        _selectTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 65, SCREEN_WIDTH, 50)];
+        _selectTitleLabel.textColor = [UIColor whiteColor];
+        _selectTitleLabel.font = [UIFont systemFontOfSize:17];
+        _selectTitleLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.3];
+    }
+    return _selectTitleLabel;
+}
+
+- (UIButton *)refreshBtn {
+    if (!_refreshBtn) {
+        _refreshBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 110, SCREEN_HEIGHT - 60, 40, 40)];
+        _refreshBtn.backgroundColor = [UIColor orangeColor];
+        _refreshBtn.layer.cornerRadius = 20;
+        [_refreshBtn addTarget:self action:@selector(refreshItems) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _refreshBtn;
+}
+
+- (UIButton *)biongBtn {
+    if (!_biongBtn) {
+        _biongBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 60, 40, 40)];
+        _biongBtn.backgroundColor = [UIColor greenColor];
+        _biongBtn.layer.cornerRadius = 20;
+        [_biongBtn addTarget:self action:@selector(biong) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _biongBtn;
+}
+
+#pragma mark - Action
+- (void)refreshItems {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager setResponseSerializer:[AFHTTPResponseSerializer new]];
+    self.refreshBtn.alpha = 0.5;
+    self.refreshBtn.userInteractionEnabled = NO;
     [manager GET:@"https://dribbble.com/shots/popular.rss" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     }
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             self.refreshBtn.alpha = 1;
+             self.refreshBtn.userInteractionEnabled = YES;
              ONOXMLDocument *xmlDoc = [ONOXMLDocument XMLDocumentWithData:responseObject error:nil];
              ONOXMLElement *rootElement = [xmlDoc rootElement];
              ONOXMLElement *channelElement = [rootElement childrenWithTag:@"channel"][0];
@@ -52,39 +114,15 @@
                  }
              }
              
-             NSLog(@"这里打印请求成功要做的事");
              [self.tableView reloadData];
          }
      
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
-             
+             self.refreshBtn.alpha = 1;
+             self.refreshBtn.userInteractionEnabled = YES;
              NSLog(@"%@",error);  //这里打印错误信息
              
          }];
-    
-    //授权相关
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"wbtoken"]) {
-        [self getAuth];
-    }
-    
-    UIButton *biongBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 60, 40, 40)];
-    biongBtn.backgroundColor = [UIColor greenColor];
-    biongBtn.layer.cornerRadius = 20;
-    [biongBtn addTarget:self action:@selector(biong) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:biongBtn];
-    
-}
-
-#pragma mark - UIElement {
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-        [_tableView registerClass:[RssItemCell class] forCellReuseIdentifier:NSStringFromClass([RssItemCell class])];
-    }
-    return _tableView;
 }
 
 - (void)getAuth {
@@ -98,15 +136,27 @@
     [WeiboSDK sendRequest:request];
 }
 
+- (void)setSelectedItem:(RssItem *)selectedItem {
+    _selectedItem = selectedItem;
+    self.selectTitleLabel.text = [NSString stringWithFormat:@"  %@", selectedItem.authorName];
+}
+
 - (void)biong
 {
-    AppDelegate *myDelegate =(AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
+    if (!self.selectedItem) {
+        [NotiHandle showNoti:@"No Item" isSuccess:NO];
+        return;
+    }
+    self.biongBtn.alpha = 0.5;
+    self.biongBtn.userInteractionEnabled = NO;
     WBImageObject *image = [WBImageObject object];
-    image.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://bbsimg.ali213.net/data/attachment/forum/201311/05/21224633iguo4a2a3l6uza.gif"]];
+    NSString *defaultPath = [[SDImageCache sharedImageCache] defaultCachePathForKey:self.selectedItem.imageUrl];
+    image.imageData = [NSData dataWithContentsOfFile:defaultPath];
     
-    [WBHttpRequest requestForShareAStatus:@"test" contatinsAPicture:image orPictureUrl:nil withAccessToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"wbtoken"] andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
-        
+    NSString *content = [NSString stringWithFormat:@"#每日动效# \"%@\"，作者：%@，%@", self.selectedItem.title, self.selectedItem.authorName, self.selectedItem.link];
+    [WBHttpRequest requestForShareAStatus:content contatinsAPicture:image orPictureUrl:nil withAccessToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"wbtoken"] andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
+        self.biongBtn.alpha = 1;
+        self.biongBtn.userInteractionEnabled = YES;;
         if (!error) {
             [NotiHandle showNoti:@"Succeed" isSuccess:YES];
         }
@@ -120,7 +170,7 @@
     }];
 }
 
-#pragma mark - tableviewdatasource
+#pragma mark - UITableView
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.view.bounds.size.width * 0.75;
@@ -142,11 +192,12 @@
     return cell;
 }
 
-
-#pragma mark - tableview delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    RssItem *item = _itemArray[indexPath.row];
+    self.selectedItem = item;
+    RssItemCell *cell = (RssItemCell *)[tableView cellForRowAtIndexPath:indexPath];
+    [cell loadItem:item];
 }
 
 @end
