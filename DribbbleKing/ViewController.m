@@ -153,7 +153,7 @@
     NSString *defaultPath = [[SDImageCache sharedImageCache] defaultCachePathForKey:self.selectedItem.imageUrl];
     image.imageData = [NSData dataWithContentsOfFile:defaultPath];
     
-    NSString *content = [NSString stringWithFormat:@"#每日动效# \"%@\"，作者：%@，%@", self.selectedItem.title, self.selectedItem.authorName, self.selectedItem.link];
+    NSString *content = [NSString stringWithFormat:@"#每日动效# 【%@】，作者：%@，%@", self.selectedItem.title, self.selectedItem.authorName, self.selectedItem.link];
     [WBHttpRequest requestForShareAStatus:content contatinsAPicture:image orPictureUrl:nil withAccessToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"wbtoken"] andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
         self.biongBtn.alpha = 1;
         self.biongBtn.userInteractionEnabled = YES;;
