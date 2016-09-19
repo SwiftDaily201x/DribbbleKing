@@ -197,7 +197,7 @@
     RssItem *item = _itemArray[indexPath.row];
     self.selectedItem = item;
     RssItemCell *cell = (RssItemCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [cell loadItem:item];
+    [cell loadGif];
 }
 
 @end
