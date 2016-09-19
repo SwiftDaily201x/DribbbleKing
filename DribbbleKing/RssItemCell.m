@@ -9,12 +9,12 @@
 
 #import "RssItemCell.h"
 #import "ConstDef.h"
-#import "UIImageView+WebCache.h"
 #import "FFCircularProgressView.h"
+#import "YYWebImage.h"
 
 @interface RssItemCell ()
 
-@property (nonatomic, strong) UIImageView *mainImageView;
+@property (nonatomic, strong) YYAnimatedImageView *mainImageView;
 @property (nonatomic, strong) FFCircularProgressView *progressView;
 @property (nonatomic, strong) UILabel *mainTextLabel;
 
@@ -23,7 +23,7 @@
 @implementation RssItemCell
 
 - (void)dealloc {
-    [self.mainImageView sd_cancelCurrentImageLoad];
+    [self.mainImageView yy_cancelCurrentImageRequest];
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -38,7 +38,7 @@
 
 - (UIImageView *)mainImageView {
     if (!_mainImageView) {
-        _mainImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 0.75)];
+        _mainImageView = [[YYAnimatedImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 0.75)];
     }
     return _mainImageView;
 }
@@ -62,24 +62,20 @@
 }
 
 - (void)loadItem:(RssItem *)item {
-    self.item = item;
     self.mainTextLabel.text = [NSString stringWithFormat:@"  [%@]  %@", item.authorName, item.title];
-    _progressView.hidden = YES;
-}
-
-- (void)loadGif {
     _progressView.hidden = NO;
-    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:self.item.imageUrl]
-                          placeholderImage:nil
-                                   options:0
+    [self.mainImageView yy_setImageWithURL:[NSURL URLWithString:item.imageUrl]
+                               placeholder:nil
+                                   options:YYWebImageOptionProgressive
                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                       if (expectedSize > 0) {
                                           self.progressView.progress = receivedSize * 1.0 / expectedSize;
                                       }
                                   }
-                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                     self.progressView.hidden = YES;
-                                  }];
+                                 transform:nil
+                                completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+                                    self.progressView.hidden = YES;
+                                }];
 }
 
 @end

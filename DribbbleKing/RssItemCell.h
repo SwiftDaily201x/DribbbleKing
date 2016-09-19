@@ -11,10 +11,6 @@
 
 @interface RssItemCell : UITableViewCell
 
-@property (nonatomic, strong) RssItem *item;
-
 - (void)loadItem:(RssItem *)item;
-
-- (void)loadGif;
 
 @end

@@ -15,7 +15,7 @@
 #import "RssItem.h"
 #import "RssItemCell.h"
 #import "ConstDef.h"
-#import "SDImageCache.h"
+#import "YYWebImage.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -150,8 +150,7 @@
     self.biongBtn.alpha = 0.5;
     self.biongBtn.userInteractionEnabled = NO;
     WBImageObject *image = [WBImageObject object];
-    NSString *defaultPath = [[SDImageCache sharedImageCache] defaultCachePathForKey:self.selectedItem.imageUrl];
-    image.imageData = [NSData dataWithContentsOfFile:defaultPath];
+    image.imageData = [[YYImageCache sharedCache] getImageDataForKey:self.selectedItem.imageUrl];
     
     NSString *content = [NSString stringWithFormat:@"#每日动效# 【%@】，作者：%@，%@", self.selectedItem.title, self.selectedItem.authorName, self.selectedItem.link];
     [WBHttpRequest requestForShareAStatus:content contatinsAPicture:image orPictureUrl:nil withAccessToken:[[NSUserDefaults standardUserDefaults] objectForKey:@"wbtoken"] andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
@@ -196,8 +195,6 @@
 {
     RssItem *item = _itemArray[indexPath.row];
     self.selectedItem = item;
-    RssItemCell *cell = (RssItemCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [cell loadGif];
 }
 
 @end
