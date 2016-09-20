@@ -17,6 +17,9 @@
 		106CEC2E1D8BBC13007A8BCE /* RssItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 106CEC2D1D8BBC13007A8BCE /* RssItemCell.m */; };
 		107306411D8F8902002C5CC3 /* FFCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1073063E1D8F8902002C5CC3 /* FFCircularProgressView.m */; };
 		107306421D8F8902002C5CC3 /* UIColor+iOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 107306401D8F8902002C5CC3 /* UIColor+iOS7.m */; };
+		107306481D8FAF26002C5CC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 107306441D8FAF26002C5CC3 /* Images.xcassets */; };
+		107306491D8FAF26002C5CC3 /* YALSunnyRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 107306461D8FAF26002C5CC3 /* YALSunnyRefreshControl.m */; };
+		1073064A1D8FAF26002C5CC3 /* YALSunnyRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 107306471D8FAF26002C5CC3 /* YALSunnyRefreshControl.xib */; };
 		109E40AA1D8995C200CE1785 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 109E409D1D8995C200CE1785 /* libWeiboSDK.a */; };
 		109E40AB1D8995C200CE1785 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 109E40A61D8995C200CE1785 /* WeiboSDK.bundle */; };
 		109E40AD1D8996F200CE1785 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 109E40AC1D8996F200CE1785 /* libsqlite3.0.tbd */; };
@@ -64,6 +67,10 @@
 		1073063E1D8F8902002C5CC3 /* FFCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFCircularProgressView.m; sourceTree = "<group>"; };
 		1073063F1D8F8902002C5CC3 /* UIColor+iOS7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+iOS7.h"; sourceTree = "<group>"; };
 		107306401D8F8902002C5CC3 /* UIColor+iOS7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+iOS7.m"; sourceTree = "<group>"; };
+		107306441D8FAF26002C5CC3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		107306451D8FAF26002C5CC3 /* YALSunnyRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSunnyRefreshControl.h; sourceTree = "<group>"; };
+		107306461D8FAF26002C5CC3 /* YALSunnyRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSunnyRefreshControl.m; sourceTree = "<group>"; };
+		107306471D8FAF26002C5CC3 /* YALSunnyRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALSunnyRefreshControl.xib; sourceTree = "<group>"; };
 		109E409D1D8995C200CE1785 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		109E409E1D8995C200CE1785 /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
 		109E409F1D8995C200CE1785 /* WBHttpRequest+WeiboGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboGame.h"; sourceTree = "<group>"; };
@@ -146,6 +153,7 @@
 		1035A5141D8950AD00998921 /* DribbbleKing */ = {
 			isa = PBXGroup;
 			children = (
+				107306431D8FAF26002C5CC3 /* YALSunnyRefreshControll */,
 				1073063C1D8F8902002C5CC3 /* FFCircularProgressView */,
 				109E40B81D89C5C700CE1785 /* CRToast */,
 				109E409C1D8995A400CE1785 /* WeiboSDK */,
@@ -195,6 +203,17 @@
 				107306401D8F8902002C5CC3 /* UIColor+iOS7.m */,
 			);
 			path = FFCircularProgressView;
+			sourceTree = "<group>";
+		};
+		107306431D8FAF26002C5CC3 /* YALSunnyRefreshControll */ = {
+			isa = PBXGroup;
+			children = (
+				107306441D8FAF26002C5CC3 /* Images.xcassets */,
+				107306451D8FAF26002C5CC3 /* YALSunnyRefreshControl.h */,
+				107306461D8FAF26002C5CC3 /* YALSunnyRefreshControl.m */,
+				107306471D8FAF26002C5CC3 /* YALSunnyRefreshControl.xib */,
+			);
+			path = YALSunnyRefreshControll;
 			sourceTree = "<group>";
 		};
 		109E409C1D8995A400CE1785 /* WeiboSDK */ = {
@@ -343,7 +362,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1073064A1D8FAF26002C5CC3 /* YALSunnyRefreshControl.xib in Resources */,
 				1035A5251D8950AD00998921 /* LaunchScreen.storyboard in Resources */,
+				107306481D8FAF26002C5CC3 /* Images.xcassets in Resources */,
 				1035A5201D8950AD00998921 /* Main.storyboard in Resources */,
 				109E40B31D899B0000CE1785 /* Assets.xcassets in Resources */,
 				109E40AB1D8995C200CE1785 /* WeiboSDK.bundle in Resources */,
@@ -422,6 +443,7 @@
 				109E40C91D89C5C700CE1785 /* CRToastViewController.m in Sources */,
 				107306411D8F8902002C5CC3 /* FFCircularProgressView.m in Sources */,
 				107306421D8F8902002C5CC3 /* UIColor+iOS7.m in Sources */,
+				107306491D8FAF26002C5CC3 /* YALSunnyRefreshControl.m in Sources */,
 				106CEC2E1D8BBC13007A8BCE /* RssItemCell.m in Sources */,
 				109E40C71D89C5C700CE1785 /* CRToastManager.m in Sources */,
 				109E40C81D89C5C700CE1785 /* CRToastView.m in Sources */,

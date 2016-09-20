@@ -16,6 +16,7 @@
 #import "RssItemCell.h"
 #import "ConstDef.h"
 #import "YYWebImage.h"
+#import "YALSunnyRefreshControl.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) UILabel *selectTitleLabel;
 @property (nonatomic, strong) UIButton *refreshBtn;
 @property (nonatomic, strong) UIButton *biongBtn;
+@property (nonatomic,strong) YALSunnyRefreshControl *sunnyRefreshControl;
 
 @end
 
@@ -56,6 +58,13 @@
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
         [_tableView registerClass:[RssItemCell class] forCellReuseIdentifier:NSStringFromClass([RssItemCell class])];
+        
+        //下拉刷新
+        self.sunnyRefreshControl = [YALSunnyRefreshControl new];
+        [self.sunnyRefreshControl addTarget:self
+                                     action:@selector(refreshItems)
+                           forControlEvents:UIControlEventValueChanged];
+        [self.sunnyRefreshControl attachToScrollView:self.tableView];
     }
     return _tableView;
 }
@@ -100,6 +109,7 @@
         
     }
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             [self.sunnyRefreshControl endRefreshing];
              self.refreshBtn.alpha = 1;
              self.refreshBtn.userInteractionEnabled = YES;
              ONOXMLDocument *xmlDoc = [ONOXMLDocument XMLDocumentWithData:responseObject error:nil];
@@ -118,6 +128,7 @@
          }
      
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+             [self.sunnyRefreshControl endRefreshing];
              self.refreshBtn.alpha = 1;
              self.refreshBtn.userInteractionEnabled = YES;
              NSLog(@"%@",error);  //这里打印错误信息
